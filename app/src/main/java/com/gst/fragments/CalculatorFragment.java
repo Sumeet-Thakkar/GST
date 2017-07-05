@@ -3,6 +3,7 @@ package com.gst.fragments;
 
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -39,20 +40,11 @@ import butterknife.ButterKnife;
  */
 public class CalculatorFragment extends BaseFragment {
 
-//    @BindView(R.id.btn_gst_rule)
-//    Button btn_gst_rule;
-
     @BindView(R.id.et_amount)
     EditText et_amount;
 
     @BindView(R.id.sp_percentage)
     Spinner sp_percentage;
-
-//    @BindView(R.id.cb_include_gst)
-//    CheckBox cb_include_gst;
-//
-//    @BindView(R.id.cb_exclude_gst)
-//    CheckBox cb_exclude_gst;
 
     @BindView(R.id.tv_original_cost)
     TextView tv_original_cost;
@@ -69,16 +61,14 @@ public class CalculatorFragment extends BaseFragment {
     @BindView(R.id.radioGST)
     RadioGroup radioGST;
 
+    @BindView(R.id.rb_include_gst)
+    RadioButton rb_include_gst;
 
+    @BindView(R.id.rb_exclude_gst)
+    RadioButton rb_exclude_gst;
 
     String Selected_GST_Percentage = "";
-    int Amount = 0;
-
-    String Value1 = "Select GST Percentage";
-    String Value2 = "5%";
-    String Value3 = "12%";
-    String Value4 = "18%";
-    String Value5 = "28%";
+    String AmountEntered = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -99,16 +89,17 @@ public class CalculatorFragment extends BaseFragment {
 
                 Selected_GST_Percentage = item;
 
-                switch(Selected_GST_Percentage)
-                {
-                    case "Value1":
+//                switch(Selected_GST_Percentage)
+//                {
+//                    case "Value1":
+//
+//                        break;
+//
+//                }
 
-                        break;
-
-                }
-                // Showing selected spinner item
-                Toast.makeText(mActivity, "Selected: " + item, Toast.LENGTH_LONG).show();
                 int selectedId = radioGST.getCheckedRadioButtonId();
+
+                SetValues(AmountEntered);
             }
 
             @Override
@@ -120,18 +111,32 @@ public class CalculatorFragment extends BaseFragment {
         et_amount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Toast.makeText(mActivity,"beforeTextChanged"+charSequence.toString(),Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+                AmountEntered = charSequence.toString();
                 SetValues(charSequence.toString());
 
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        radioGST.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                if(rb_include_gst.isChecked()) {
+
+                    SetValues(AmountEntered);
+                } else if(rb_exclude_gst.isChecked()) {
+                    SetValues(AmountEntered);
+                }
             }
         });
 
@@ -183,26 +188,46 @@ public class CalculatorFragment extends BaseFragment {
 
     public void SetValues(String value)
     {
+        if(AmountEntered.length()!=0) {
+            if(Selected_GST_Percentage.length()!=0) {
 
-        int Amount, GSTPerc, GSTPrice, NetPrice, ExcludeGST;
+                float Amount, GSTPerc, GSTPrice, NetPrice, ExcludeGST;
 
-        Amount = Integer.parseInt(value);
-        GSTPerc = Integer.parseInt(Selected_GST_Percentage.split("%")[0]);
+                Amount = Float.parseFloat(value);
+                GSTPerc = Float.parseFloat(Selected_GST_Percentage.split("%")[0]);
 
-        tv_original_cost.setText(value);
+                tv_original_cost.setText(value);
 
-        tv_gst_perc.setText(Selected_GST_Percentage);
+                tv_gst_perc.setText(Selected_GST_Percentage);
 
-        GSTPrice = (Amount*GSTPerc/100);
+                if(rb_include_gst.isChecked()) {
+                    GSTPrice = (Amount * GSTPerc / 100);
 
-        tv_gst_price.setText(String.valueOf(GSTPrice));
+                    tv_gst_price.setText(String.valueOf(GSTPrice));
 
-        NetPrice = Amount + GSTPrice;
+                    NetPrice = Amount + GSTPrice;
 
-        tv_net_price.setText(String.valueOf(NetPrice));
+                    tv_net_price.setText(String.valueOf(NetPrice));
+                }else if(rb_exclude_gst.isChecked()) {
+                    ExcludeGST = (Amount * 100) / (100 + GSTPerc);//(Amount*(100+GSTPerc)/100);
 
-        ExcludeGST = (Amount*(100+GSTPerc)/100);
+                    GSTPrice = (Amount - ExcludeGST);
 
-        Methods.syso("ExcludeGST == "+ExcludeGST);
+                    tv_gst_price.setText(String.valueOf(GSTPrice));
+
+                    NetPrice = Amount + GSTPrice;
+
+                    tv_net_price.setText(String.valueOf(ExcludeGST));
+
+                    Methods.syso("ExcludeGST == " + ExcludeGST);
+                }
+            }else
+            {
+                mActivity.showSnackBar("Please select GST percentage.");
+            }
+        }else
+        {
+            mActivity.showSnackBar("Please enter amount.");
+        }
     }
 }

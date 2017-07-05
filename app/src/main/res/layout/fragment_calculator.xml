@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/inst3"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
+
+        <!--<EditText-->
+            <!--android:id="@+id/et_amount"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Enter amount"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:inputType="number"-->
+            <!--/>-->
+        <EditText
+            android:id="@+id/et_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
+            android:hint="@string/enter_amount"/>
+
+        <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10dip"-->
+            <!--android:text="Percentage:"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--/>-->
+
+        <!-- Spinner Element -->
+        <Spinner
+            android:id="@+id/sp_percentage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinner_title"
+            android:background="@color/colorPrimary"
+            />
+
+        <RadioGroup
+            android:id="@+id/radioGST"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/rb_include_gst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INCLUDE GST"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/rb_exclude_gst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXCLUDE GST" />
+
+        </RadioGroup>
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/cb_include_gst"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="INCLUDE GST"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--/>-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/cb_exclude_gst"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="EXCLUDE GST"-->
+            <!--android:textColor="@android:color/black"-->
+
+            <!--/>-->
+
+        <TextView
+            android:id="@+id/tv_original_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Original cost = 0.00"
+            android:layout_margin="20dp"
+            android:background="@color/colorPrimary"
+            />
+
+        <TextView
+            android:id="@+id/tv_gst_perc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GST % = 0.00%"
+            android:layout_margin="20dp"
+            android:background="@color/colorPrimary"
+            />
+
+        <TextView
+            android:id="@+id/tv_gst_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="GST Price = 0.00"
+            android:background="@color/colorPrimary"
+            />
+
+        <TextView
+            android:id="@+id/tv_net_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Net Price = 0.00 "
+            android:background="@color/colorPrimary"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

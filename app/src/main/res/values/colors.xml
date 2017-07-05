@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#29B6F6</color>
+    <color name="colorAccent">#FFF5F4</color>
+
+
+    <!-- Screen UI colors -->
+    <color name="toolbar_bg">@color/colorPrimary</color>
+    <color name="txt_white">@color/colorAccent</color>
+    <color name="txt_light_gray">#a3a3a3</color>
+    <color name="txt_light_gray2">#bcbaba</color>
+
+    <color name="light_purple">#8a82bc</color>
+
+    <color name="screen_bg">@color/colorAccent</color>
+    <color name="wave_color">#98CDD4</color>
+    <color name="dialog_divider">#FC4A3F</color>
+    <color name="home_item_divider">#D9D8DC</color>
+    <color name="home_item_divider_trans">#85D9D8DC</color>
+
+    <color name="rnd1">#dd5f5f</color>
+    <color name="rnd2">#06a3cb</color>
+    <color name="rnd3">#5FA6A9</color>
+    <color name="rnd4">#448AFF</color>
+    <color name="rnd5">#8BC34A</color>
+    <color name="rnd6">#FFC107</color>
+    <color name="rnd7">#3F51B5</color>
+    <color name="rnd8">#E91E63</color>
+
+    <!--Instruction screen color-->
+
+    <color name="inst1">#6739B7</color>
+    <color name="inst2">#02A2EB</color>
+    <color name="inst3">#E91D63</color>
+    <color name="inst4">#6739B7</color>
+    <color name="inst5">#009688</color>
+    <color name="inst6">#02A2EB</color>
+
+</resources>
+

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">GST</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pick_a_user_name">Pick a user name</string>
+    <string name="you_will_stay_anonymous_at_all_times_so_go_ahead_and_call_yourself_whatever_you_feel_like">You will stay anonymous at all times, so go ahead and call yourself whatever you feel like</string>
+    <string name="user_name">User name</string>
+    <string name="next">Next</string>
+    <string name="save">Save</string>
+    <string name="enable">Enable</string>
+
+    <string name="OK">Ok</string>
+
+
+    <!-- Empty list -->
+    <string name="no_data_found">No data found</string>
+    <string name="str_very_close">Very close</string>
+
+
+    <string name="str_no_comments">No comments yet</string>
+
+
+    <!--HOME SCREEN-->
+
+    <string name="gst_rule">GST Rules</string>
+    <string name="gst_understanding">GST Understanding</string>
+    <string name="gst_calculator">GST Calculator</string>
+
+    <!--CALCULATOR SCREEN-->
+
+    <string name="spinner_title">Select Percentage</string>
+    <string name="enter_amount">Enter amount</string>
+
+
+
+
+</resources>

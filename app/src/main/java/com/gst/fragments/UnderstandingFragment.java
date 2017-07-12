@@ -1,10 +1,12 @@
 package com.gst.fragments;
 
 
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gst.R;
+import com.gst.other.UnderstandingAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,15 +26,16 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UnderstandingFragment extends BaseFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class UnderstandingFragment extends BaseFragment {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    private LinearLayoutManager mLinearLayoutManager;
+    private List<String> understandingList = new ArrayList<>();
+    private UnderstandingAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_calculator, container, false);
+        return inflater.inflate(R.layout.fragment_understanding, container, false);
     }
 
     @Override
@@ -36,14 +43,25 @@ public class UnderstandingFragment extends BaseFragment implements View.OnClickL
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        mActivity.setHeaderTitle("");
+        mActivity.setHeaderTitle("GST Understanding");
 
-        mLinearLayoutManager = new LinearLayoutManager(mActivity);
-        recyclerView.setLayoutManager(mLinearLayoutManager);
+        mAdapter = new UnderstandingAdapter(understandingList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        prepareMovieData();
+
 
     }
 
-
+    private void prepareMovieData() {
+        for(int i=1;i<200;i++) {
+            understandingList.add("Understanding-" + i);
+        }
+        mAdapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -75,28 +93,4 @@ public class UnderstandingFragment extends BaseFragment implements View.OnClickL
         super.onPause();
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-//            case R.id.btn_gst_rule:
-//                fragmentUtil.addFragmentIgnorIfCurrent(new SettingFragment(), true, true);
-//                break;
-//
-//            case R.id.btn_gst_understanding:
-//                fragmentUtil.addFragmentIgnorIfCurrent(new SettingFragment(), true, true);
-//                break;
-//
-//            case R.id.btn_gst_calculator:
-//                fragmentUtil.addFragmentIgnorIfCurrent(new SettingFragment(), true, true);
-//                break;
-        }
-    }
-
-
-
-    @Override
-    public void onRefresh() {
-
-
-    }
 }

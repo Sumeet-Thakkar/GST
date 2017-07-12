@@ -20,7 +20,7 @@ import butterknife.BindView;
 public class UnderstandingAdapter extends RecyclerView.Adapter<UnderstandingAdapter.MyViewHolder> {
 
 
-        private List<Movie> moviesList;
+        private List<String> understandingList;
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             TextView tv_undrstnd_point;
@@ -33,29 +33,26 @@ public class UnderstandingAdapter extends RecyclerView.Adapter<UnderstandingAdap
         }
 
 
-        public MoviesAdapter(List<Movie> moviesList) {
-            this.moviesList = moviesList;
+        public UnderstandingAdapter(List<String> understandingList) {
+            this.understandingList = understandingList;
         }
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.movie_list_row, parent, false);
+                    .inflate(R.layout.understanding_row, parent, false);
 
             return new MyViewHolder(itemView);
         }
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
-            Movie movie = moviesList.get(position);
-            holder.title.setText(movie.getTitle());
-            holder.genre.setText(movie.getGenre());
-            holder.year.setText(movie.getYear());
+            String understanding = understandingList.get(position);
+            holder.tv_undrstnd_point.setText(understanding);
         }
 
         @Override
         public int getItemCount() {
-            return moviesList.size();
+            return understandingList.size();
         }
-
 }
